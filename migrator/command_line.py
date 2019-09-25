@@ -30,15 +30,6 @@ def main():
                         help='foo help')
     args = parser.parse_args()
 
-    print(args)
-
-    #     if args.command == 'server':
-    #         run_server()
-    #     elif args.command == 'client':
-    #         run_client()
-    #     else:
-    #         sys.exit("Invalid command. Exiting...")
-
     stash_api = StashAPI(username=args.stash_username,
                          password=args.stash_password,
                          base_url=args.stash_base_url)
