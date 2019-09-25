@@ -1,0 +1,30 @@
+version: '3'
+services:
+  cli:
+    build: .
+    stdin_open: true
+    tty: true
+    environment:
+      - STASH_USERNAME=gyant
+      - STASH_PASSWORD=11Java35
+      - STASH_BASE_URL=http://stash:7990/
+      - BITBUCKETCLOUD_USERNAME=ryanthompson-foghorn
+      - BITBUCKETCLOUD_PASSWORD=ywGzEaF3xRGzggFUH5Ek
+      - BITBUCKETCLOUD_BASE_URL=https://api.bitbucket.org/
+    # ports:
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    links:
+    - stash
+  stash:
+    image: atlassian/stash:latest
+    ports:
+      - 7990:7990
+      - 7999:7999
+    volumes:
+      - ./data/stash:/var/atlassian/application-data/stash
+    # environment:
+    restart: always
+volumes:
+  logvolume01: {}
